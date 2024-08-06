@@ -1,0 +1,28 @@
+<mat-card>
+    <mat-card-title>{{ isEdit ? 'Edit Art' : 'Add New Art' }}</mat-card-title>
+    <mat-card-content>
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Title" [(ngModel)]="art.title" name="title" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Artist" [(ngModel)]="art.artist" name="artist" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Year" [(ngModel)]="art.year" name="year" type="number" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Image URL" [(ngModel)]="art.imageUrl" name="imageUrl" maxlength="255">
+          <mat-error *ngIf="art.imageUrl && art.imageUrl.length > 255">
+            Image URL must be 255 characters or less.
+          </mat-error>
+        </mat-form-field>
+        <img *ngIf="art.imageUrl" [src]="art.imageUrl" alt="Image Preview" class="preview">
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="saveArt()" [disabled]="art.imageUrl && art.imageUrl.length > 255">Save</button>
+      <button mat-button routerLink="/arts">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+  

@@ -1,0 +1,20 @@
+<div *ngFor="let art of arts">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ art.title }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image *ngIf="art.imageUrl" [src]="art.imageUrl" alt="{{ art.title }}">
+      <mat-card-content>
+        <p>Artist: {{ art.artist }}</p>
+        <p>Year: {{ art.year }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="editArt(art.id)">Edit</button>
+        <button mat-button (click)="deleteArt(art.id)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <button mat-fab color="primary" aria-label="Add" routerLink="/arts/new">
+    <mat-icon>add</mat-icon>
+  </button>
+  
